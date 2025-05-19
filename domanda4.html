@@ -2,61 +2,97 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Domanda 4 - Tristezza</title>
   <style>
+    :root {
+      --button-min-width: 330px;
+      --base-font-size: clamp(20px, 2.8vw, 25px);
+    }
+
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      overflow: hidden;
+      min-height: 100vh;
+      width: 100%;
     }
 
     body {
-      background-image: url('sfondo_scuola_mamma_16_9.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: url('sfondo_scuola_mamma_16_9.png') center/cover no-repeat fixed;
+      font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui, cursive;
       text-align: center;
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 20px;
     }
 
     .overlay {
       background-color: rgba(0, 0, 0, 0.6);
-      padding: 30px;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 800px;
+      padding: 2.7em;
+      border-radius: 25px;
+      width: min(95%, 860px);
+      margin: auto;
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     h1 {
-        font-size: 2.5em;
-        color: #fff;
+      font-size: clamp(2.3em, 5.8vw, 3.3em);
+      color: #fff;
+      margin: 0.9em 0;
+      text-transform: uppercase;
+      letter-spacing: 1.7px;
+      line-height: 1.3;
     }
 
     h2 {
-      font-size: 1.5em;
+      font-size: clamp(1.4em, 3.4vw, 2em);
       color: #ffcc00;
-      margin-bottom: 30px;
+      margin: 1.7em 0;
       text-transform: uppercase;
+      letter-spacing: 1.4px;
+      line-height: 1.4;
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.4em;
+      margin: 2.7em 0;
     }
 
     .option {
       background-color: #fff;
       color: #000;
       border: none;
-      text-transform: uppercase;
-      border-radius: 12px;
-      padding: 15px;
-      font-size: 1.2em;
-      margin: 10px;
+      border-radius: 15px;
+      padding: 1.4em 2.4em;
+      font-size: var(--base-font-size);
+      margin: 1em 0;
       cursor: pointer;
-      width: 80%;
-      max-width: 500px;
+      width: min(100%, 600px);
+      min-width: var(--button-min-width);
+      transition: transform 0.2s, filter 0.2s;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .option:focus {
+      outline: 3px solid #ffcc00;
+      outline-offset: 3px;
+    }
+
+    @media (hover: hover) {
+      .option:hover {
+        transform: scale(1.03);
+        filter: brightness(0.95);
+      }
     }
 
     .option.correct {
@@ -71,29 +107,70 @@
 
     .next {
       display: none;
-      margin-top: 20px;
-      font-size: 1.2em;
+      margin: 2.7em auto 0;
+      padding: 1.4em 4em;
+      font-size: var(--base-font-size);
       background-color: #ffcc00;
       color: #000;
-      padding: 10px 20px;
-      border-radius: 10px;
+      border-radius: 15px;
       border: none;
       cursor: pointer;
+      width: fit-content;
       text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 1.2px;
+    }
+
+    @media (max-width: 768px) {
+      .overlay {
+        padding: 2.2em;
+        min-height: 80vh;
+      }
+
+      .option {
+        width: 100%;
+        min-width: unset;
+        padding: 1.2em 1.8em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 15px;
+      }
+
+      .overlay {
+        padding: 1.8em;
+        border-radius: 20px;
+      }
+
+      h1 {
+        font-size: 2.1em;
+      }
+
+      h2 {
+        font-size: 1.3em;
+      }
+
+      .option {
+        font-size: 1.05em;
+        padding: 1.1em;
+      }
     }
   </style>
 </head>
 <body>
   <div class="overlay">
     <h1>TRISTEZZA IL PESCIOLINO</h1>
-    <h2>cosa fa Tristezza il pesciolino quando è triste?</h2>
-    <button class="option" onclick="checkAnswer(this, false)">Si nasconde da tutto e da tutti e non parla con nessuno.</button><br>
-    <button class="option" onclick="checkAnswer(this, false)">Scappa via lontano nuotando nel ruscello.</button><br>
-    <button class="option" onclick="checkAnswer(this, false)">Piange tanto fino a quando non si sente stanco.</button><br>
-    <button class="option" onclick="checkAnswer(this, true)">Parla con Pop e lascia che il tempo spazzi via la tristezza come una nuvola che si sposta e fa uscire il sole.</button><br>
+    <h2>COSA FA TRISTEZZA IL PESCIOLINO QUANDO È TRISTE?</h2>
+    <div class="options-container">
+      <button class="option" onclick="checkAnswer(this, false)">SI NASCONDE DA TUTTO E DA TUTTI E NON PARLA CON NESSUNO.</button>
+      <button class="option" onclick="checkAnswer(this, false)">SCAPPA VIA LONTANO NUOTANDO NEL RUSCELLO.</button>
+      <button class="option" onclick="checkAnswer(this, false)">PIANGE TANTO FINO A QUANDO NON SI SENTE STANCO.</button>
+      <button class="option" onclick="checkAnswer(this, true)">PARLA CON POP E LASCIA CHE IL TEMPO SPAZZI VIA LA TRISTEZZA COME UNA NUVOLA CHE SI SPOSTA E FA USCIRE IL SOLE.</button>
+    </div>
     <h2>DIMMI COSA FAI QUANDO SEI TRISTE. CON CHI POTRESTI PARLARE?</h2>
-
-    <button class="next" id="nextButton" onclick="location.href='domanda5.html'">Prossima domanda</button>
+    <button class="next" id="nextButton" onclick="location.href='domanda5.html'">PROSSIMA DOMANDA</button>
   </div>
 
   <script>
@@ -108,7 +185,7 @@
       } else {
         button.classList.add('wrong');
         options.forEach(btn => {
-          if (btn.textContent.includes('tristezza passa')) {
+          if (btn.textContent.includes('SPAZZI VIA LA TRISTEZZA')) {
             btn.classList.add('correct');
           }
         });
