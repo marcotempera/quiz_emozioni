@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Domanda 4 - Tristezza</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      background-image: url('sfondo_scuola_mamma_16_9.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 800px;
+    }
+
+    h1 {
+        font-size: 3em;
+        color: #fff;
+    }
+
+    h2 {
+      font-size: 2em;
+      color: #ffcc00;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+    }
+
+    .option {
+      background-color: #fff;
+      color: #000;
+      border: none;
+      text-transform: uppercase;
+      border-radius: 12px;
+      padding: 15px;
+      font-size: 1.2em;
+      margin: 10px;
+      cursor: pointer;
+      width: 80%;
+      max-width: 500px;
+    }
+
+    .option.correct {
+      background-color: #4CAF50 !important;
+      color: white;
+    }
+
+    .option.wrong {
+      background-color: #F44336 !important;
+      color: white;
+    }
+
+    .next {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.2em;
+      background-color: #ffcc00;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>TRISTEZZA IL PESCIOLINO</h1>
+    <h2>cosa fa Tristezza al pesciolino quando è triste?</h2>
+    <button class="option" onclick="checkAnswer(this, false)">Si nasconde da tutto e da tutti e non parla con nessuno.</button><br>
+    <button class="option" onclick="checkAnswer(this, false)">Scappa via lontano nuotando nel ruscello.</button><br>
+    <button class="option" onclick="checkAnswer(this, false)">Piange tanto fino a quando non si sente stanco.</button><br>
+    <button class="option" onclick="checkAnswer(this, true)">Parla con Pop e lascia che il tempo spazzi via la tristezza come una nuvola che si sposta e fa uscire il sole.</button><br>
+    <h2>DIMMI COSA FAI QUANDO SEI TRISTE. CON CHI POTRESTI PARLARE?</h2>
+
+    <button class="next" id="nextButton" onclick="location.href='domanda5.html'">Prossima domanda</button>
+  </div>
+
+  <script>
+    let answered = false;
+    function checkAnswer(button, isCorrect) {
+      if (answered) return;
+      answered = true;
+      const options = document.querySelectorAll('.option');
+      options.forEach(btn => btn.disabled = true);
+      if (isCorrect) {
+        button.classList.add('correct');
+      } else {
+        button.classList.add('wrong');
+        options.forEach(btn => {
+          if (btn.textContent.includes('tristezza passa')) {
+            btn.classList.add('correct');
+          }
+        });
+      }
+      document.getElementById('nextButton').style.display = 'inline-block';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Domanda 8 - Entusiasmo</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      background-image: url('sfondo_scuola_mamma_16_9.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 800px;
+    }
+
+    h1 {
+        font-size: 3em;
+        color: #fff;
+    }
+
+    h2 {
+      font-size: 2em;
+      color: #ffcc00;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+    }
+
+    .option {
+      background-color: #fff;
+      color: #000;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 12px;
+      padding: 15px;
+      font-size: 1.2em;
+      margin: 10px;
+      cursor: pointer;
+      width: 80%;
+      max-width: 500px;
+    }
+
+    .option.correct {
+      background-color: #4CAF50 !important;
+      color: white;
+    }
+
+    .option.wrong {
+      background-color: #F44336 !important;
+      color: white;
+    }
+
+    .next {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.2em;
+      background-color: #ffcc00;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>ENTUSIASMO IL CAGNOLINO</h1>
+    <h2>perché Entusiasmo il cagnolino è sempre pieno di energia e curiosità?</h2>
+    <button class="option" onclick="checkAnswer(this, false)">Perché vuole sempre fare nuove amicizie per non restare solo.</button><br>
+    <button class="option" onclick="checkAnswer(this, false)">Perché ha paura di restare fermo.</button><br>
+    <button class="option" onclick="checkAnswer(this, true)">Perché essere curiosi e vivere con entusiasmo rende ogni giorno un'avventura emozionante.</button><br>
+    <button class="option" onclick="checkAnswer(this, false)">Perché non vuole essere serio e concentrato.</button><br>
+    <h2>DIMMI SE TI PIACE ESSERE CURIOSO E SE FAI DOMANDE PER SCOPRIRE COSE NUOVE.</h2>
+
+    <button class="next" id="nextButton" onclick="location.href='saluti.html'">Vai alla fine!</button>
+  </div>
+
+  <script>
+    let answered = false;
+    function checkAnswer(button, isCorrect) {
+      if (answered) return;
+      answered = true;
+      const options = document.querySelectorAll('.option');
+      options.forEach(btn => btn.disabled = true);
+      if (isCorrect) {
+        button.classList.add('correct');
+      } else {
+        button.classList.add('wrong');
+        options.forEach(btn => {
+          if (btn.textContent.includes("curiosi rende")) {
+            btn.classList.add('correct');
+          }
+        });
+      }
+      document.getElementById('nextButton').style.display = 'inline-block';
+    }
+  </script>
+</body>
+</html>

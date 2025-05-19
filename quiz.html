@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Il Grande Prato - Emozioni</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden; /* evita scroll */
+    }
+  
+    body {
+      background-image: url('sfondo_scuola_mamma_16_9.png');
+      background-size: cover; /* riempie tutto lo schermo mantenendo le proporzioni */
+      background-repeat: no-repeat;
+      background-position: center;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      color: white;
+  
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    h1 {
+      font-size: 3.5em;
+      color: #ffcc00;
+      text-shadow: 2px 2px #000;
+      text-transform: uppercase;
+      margin-left: 25%;
+      margin-right: 25%;
+    }
+  
+    button {
+      font-size: 1.5em;
+      background-color: #ffcc00;
+      text-transform: uppercase;
+      color: #000;
+      border: none;
+      border-radius: 15px;
+      padding: 15px 30px;
+      cursor: pointer;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>CIAO BAMBINI, ORA ANDREMO A VEDERE SE VERAMENTE AVETE COMPRESO IL SIGNIFICATO DELLE EMOZIONI PROVATE DAI NOSTRI AMICI! ANDIAMO!</h1>
+    <button onclick="location.href='domanda1.html'">Inizia il quiz!</button>
+  </div>
+</body>
+</html>
