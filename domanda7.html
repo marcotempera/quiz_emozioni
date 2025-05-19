@@ -2,61 +2,97 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Domanda 7 - Rabbia</title>
   <style>
+    :root {
+      --button-min-width: 360px;
+      --base-font-size: clamp(23px, 3.1vw, 28px);
+    }
+
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      overflow: hidden;
+      min-height: 100vh;
+      width: 100%;
     }
 
     body {
-      background-image: url('sfondo_scuola_mamma_16_9.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: url('sfondo_scuola_mamma_16_9.png') center/cover no-repeat fixed;
+      font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui, cursive;
       text-align: center;
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 20px;
     }
 
     .overlay {
       background-color: rgba(0, 0, 0, 0.6);
-      padding: 30px;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 800px;
+      padding: 3.2em;
+      border-radius: 25px;
+      width: min(95%, 920px);
+      margin: auto;
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     h1 {
-        font-size: 2.5em;
-        color: #fff;
+      font-size: clamp(2.6em, 6.5vw, 3.9em);
+      color: #fff;
+      margin: 1.2em 0;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      line-height: 1.3;
     }
 
     h2 {
-      font-size: 1em;
+      font-size: clamp(1.7em, 4vw, 2.3em);
       color: #ffcc00;
-      margin-bottom: 30px;
+      margin: 2em 0;
       text-transform: uppercase;
+      letter-spacing: 1.7px;
+      line-height: 1.4;
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.7em;
+      margin: 3em 0;
     }
 
     .option {
       background-color: #fff;
       color: #000;
-      text-transform: uppercase;
       border: none;
-      border-radius: 12px;
-      padding: 15px;
-      font-size: 1.2em;
-      margin: 10px;
+      border-radius: 15px;
+      padding: 1.7em 3em;
+      font-size: var(--base-font-size);
+      margin: 1.3em 0;
       cursor: pointer;
-      width: 80%;
-      max-width: 500px;
+      width: min(100%, 660px);
+      min-width: var(--button-min-width);
+      transition: transform 0.2s, filter 0.2s;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 1.3px;
+    }
+
+    .option:focus {
+      outline: 3px solid #ffcc00;
+      outline-offset: 3px;
+    }
+
+    @media (hover: hover) {
+      .option:hover {
+        transform: scale(1.03);
+        filter: brightness(0.95);
+      }
     }
 
     .option.correct {
@@ -71,29 +107,70 @@
 
     .next {
       display: none;
-      margin-top: 20px;
-      font-size: 1.2em;
+      margin: 3em auto 0;
+      padding: 1.7em 4.8em;
+      font-size: var(--base-font-size);
       background-color: #ffcc00;
       color: #000;
-      padding: 10px 20px;
-      border-radius: 10px;
+      border-radius: 15px;
       border: none;
       cursor: pointer;
+      width: fit-content;
       text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+    }
+
+    @media (max-width: 768px) {
+      .overlay {
+        padding: 2.8em;
+        min-height: 80vh;
+      }
+
+      .option {
+        width: 100%;
+        min-width: unset;
+        padding: 1.5em 2.4em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 15px;
+      }
+
+      .overlay {
+        padding: 2.4em;
+        border-radius: 20px;
+      }
+
+      h1 {
+        font-size: 2.6em;
+      }
+
+      h2 {
+        font-size: 1.6em;
+      }
+
+      .option {
+        font-size: 1.2em;
+        padding: 1.4em;
+      }
     }
   </style>
 </head>
 <body>
   <div class="overlay">
     <h1>RABBIA IL TORO</h1>
-    <h2>quando Rabbia il toro sente una furia che sale dentro di sé, come reagisce?</h2>
-    <button class="option" onclick="checkAnswer(this, false)">Rompe tutto quello ha intorno.</button><br>
-    <button class="option" onclick="checkAnswer(this, false)">Tira pugni e schiaffi senza rispetto.</button><br>
-    <button class="option" onclick="checkAnswer(this, false)">Piange e urla forte.</button><br>
-    <button class="option" onclick="checkAnswer(this, true)">Fa diversi respiri profondi e si calma, così le cose gli sembrano meno gravi e trasforma la rabbia in qualcosa di positivo.</button><br>
+    <h2>QUANDO RABBIA IL TORO SENTE UNA FURIA CHE SALE DENTRO DI SÉ, COME REAGISCE?</h2>
+    <div class="options-container">
+      <button class="option" onclick="checkAnswer(this, false)">ROMPE TUTTO QUELLO HA INTORNO.</button>
+      <button class="option" onclick="checkAnswer(this, false)">TIRA PUGNI E SCHIAFFI SENZA RISPETTO.</button>
+      <button class="option" onclick="checkAnswer(this, false)">PIANGE E URLA FORTE.</button>
+      <button class="option" onclick="checkAnswer(this, true)">FA DIVERSI RESPIRI PROFONDI E SI CALMA, COSÌ LE COSE GLI SEMBRANO MENO GRAVI E TRASFORMA LA RABBIA IN QUALCOSA DI POSITIVO.</button>
+    </div>
     <h2>DIMMI SE HAI PROVATO A RESPIRARE PROFONDAMENTE CON GLI OCCHI CHIUSI E UNA MANO SULLA PANCIA QUANDO TI SENTI IL FORTE CALORE DELLA RABBIA.</h2>
-
-    <button class="next" id="nextButton" onclick="location.href='domanda8.html'">Prossima domanda</button>
+    <button class="next" id="nextButton" onclick="location.href='domanda8.html'">PROSSIMA DOMANDA</button>
   </div>
 
   <script>
@@ -108,7 +185,7 @@
       } else {
         button.classList.add('wrong');
         options.forEach(btn => {
-          if (btn.textContent.includes('respirare profondamente')) {
+          if (btn.textContent.includes('RESPIRI PROFONDI E SI CALMA')) {
             btn.classList.add('correct');
           }
         });
