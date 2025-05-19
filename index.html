@@ -2,67 +2,115 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Il Grande Prato - Emozioni</title>
   <style>
+    :root {
+      --base-font-size: clamp(18px, 2vw, 22px);
+    }
+
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      overflow: hidden; /* evita scroll */
+      min-height: 100vh;
+      width: 100%;
     }
-  
+
     body {
-      background-image: url('sfondo_scuola_mamma_16_9.png');
-      background-size: cover; /* riempie tutto lo schermo mantenendo le proporzioni */
-      background-repeat: no-repeat;
-      background-position: center;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      text-align: center;
+      background: url('sfondo_scuola_mamma_16_9.png') center/cover no-repeat fixed;
+      font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui, cursive;
       color: white;
-  
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 20px;
     }
-  
+
     .overlay {
       background-color: rgba(0, 0, 0, 0.5);
-      padding: 30px;
-      height: 100vh;
-      width: 100vw;
+      padding: 2em;
+      min-height: 100vh;
+      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      gap: 2em;
+      text-align: center;
     }
-  
+
     h1 {
-      font-size: 3.5em;
+      font-size: clamp(2em, 6vw, 3.5em);
       color: #ffcc00;
-      text-shadow: 2px 2px #000;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
       text-transform: uppercase;
-      margin-left: 25%;
-      margin-right: 25%;
+      line-height: 1.3;
+      letter-spacing: 1.5px;
+      margin: 0 auto;
+      max-width: min(90%, 1200px);
     }
-  
+
     button {
-      font-size: 1.5em;
+      font-size: clamp(1.2em, 2.5vw, 1.5em);
       background-color: #ffcc00;
-      text-transform: uppercase;
       color: #000;
       border: none;
       border-radius: 15px;
-      padding: 15px 30px;
+      padding: 1em 2em;
       cursor: pointer;
-      margin-top: 30px;
+      text-transform: uppercase;
+      font-weight: bold;
+      transition: transform 0.2s, filter 0.2s;
+      min-width: 250px;
+      letter-spacing: 1px;
+    }
+
+    button:focus {
+      outline: 3px solid #fff;
+      outline-offset: 3px;
+    }
+
+    @media (hover: hover) {
+      button:hover {
+        transform: scale(1.05);
+        filter: brightness(1.1);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .overlay {
+        padding: 1.5em;
+        gap: 1.5em;
+      }
+      
+      h1 {
+        font-size: clamp(1.8em, 5vw, 2.5em);
+        max-width: 95%;
+      }
+      
+      button {
+        min-width: 200px;
+        padding: 0.8em 1.5em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        letter-spacing: 0.8px;
+        line-height: 1.2;
+      }
+      
+      button {
+        width: 100%;
+        max-width: 300px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="overlay">
     <h1>CIAO BAMBINI, ORA ANDREMO A VEDERE SE VERAMENTE AVETE COMPRESO IL SIGNIFICATO DELLE EMOZIONI PROVATE DAI NOSTRI AMICI! ANDIAMO!</h1>
-    <button onclick="location.href='domanda1.html'">Inizia il quiz!</button>
+    <button onclick="location.href='domanda1.html'">INIZIA IL QUIZ!</button>
   </div>
 </body>
 </html>
