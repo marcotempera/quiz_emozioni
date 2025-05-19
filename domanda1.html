@@ -2,47 +2,63 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Domanda 1 - Gioia</title>
   <style>
+    :root {
+      --button-min-width: 280px;
+      --base-font-size: clamp(16px, 2vw, 20px);
+    }
+
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      overflow: hidden;
+      min-height: 100vh;
+      width: 100%;
     }
 
     body {
-      background-image: url('sfondo_scuola_mamma_16_9.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: url('sfondo_scuola_mamma_16_9.png') center/cover no-repeat fixed;
+      font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', system-ui, cursive;
       text-align: center;
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 20px;
     }
 
     .overlay {
       background-color: rgba(0, 0, 0, 0.6);
-      padding: 30px;
+      padding: 2em;
       border-radius: 20px;
-      width: 90%;
-      max-width: 800px;
+      width: min(90%, 800px);
+      margin: auto;
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    h1{
-        font-size: 2.5em;
-        color: #fff;
+    h1 {
+      font-size: clamp(1.5em, 4vw, 2.5em);
+      margin: 0.5em 0;
+      line-height: 1.2;
     }
 
     h2 {
-      font-size: 1.5em;
+      font-size: clamp(1em, 2.5vw, 1.5em);
       color: #ffcc00;
-      margin-bottom: 30px;
+      margin: 1em 0;
       text-transform: uppercase;
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
+      margin: 2em 0;
     }
 
     .option {
@@ -50,13 +66,25 @@
       color: #000;
       border: none;
       border-radius: 12px;
-      text-transform: uppercase;
-      padding: 15px;
-      font-size: 1.2em;
-      margin: 10px;
+      padding: 1em 1.5em;
+      font-size: var(--base-font-size);
+      margin: 0.5em 0;
       cursor: pointer;
-      width: 80%;
-      max-width: 500px;
+      width: min(100%, 500px);
+      min-width: var(--button-min-width);
+      transition: transform 0.2s, filter 0.2s;
+    }
+
+    .option:focus {
+      outline: 3px solid #ffcc00;
+      outline-offset: 2px;
+    }
+
+    @media (hover: hover) {
+      .option:hover {
+        transform: scale(1.03);
+        filter: brightness(0.95);
+      }
     }
 
     .option.correct {
@@ -71,15 +99,47 @@
 
     .next {
       display: none;
-      margin-top: 20px;
-      text-transform: uppercase;
-      font-size: 1.2em;
+      margin: 2em auto 0;
+      padding: 1em 3em;
+      font-size: var(--base-font-size);
       background-color: #ffcc00;
       color: #000;
-      padding: 10px 20px;
       border-radius: 10px;
       border: none;
       cursor: pointer;
+      width: fit-content;
+    }
+
+    @media (max-width: 768px) {
+      .overlay {
+        padding: 1.5em;
+        min-height: 70vh;
+      }
+
+      .option {
+        width: 100%;
+        min-width: unset;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+
+      .overlay {
+        padding: 1em;
+        border-radius: 15px;
+      }
+
+      h1 {
+        font-size: 1.8em;
+      }
+
+      .option {
+        font-size: 0.9em;
+        padding: 0.8em;
+      }
     }
   </style>
 </head>
@@ -87,15 +147,18 @@
   <div class="overlay">
     <h1>GIOIA LA FARFALLA</h1>
     <h2>Perché Gioia la farfalla è sempre felice?</h2>
-    <button class="option" onclick="checkAnswer(this, false)">Perché ha trovato un tesoro nascosto.</button><br>
-    <button class="option" onclick="checkAnswer(this, false)">Perché vola tra i fiori e sparge petali scintillanti facendo magie come una fata.</button><br>
-    <button class="option" onclick="checkAnswer(this, true)">Perché nota le piccole cose belle che la circondano ogni giorno.</button><br>
-    <button class="option" onclick="checkAnswer(this, false)">Perché ha molti amici che la fanno ridere.</button><br>
+    <div class="options-container">
+      <button class="option" onclick="checkAnswer(this, false)">Perché ha trovato un tesoro nascosto.</button>
+      <button class="option" onclick="checkAnswer(this, false)">Perché vola tra i fiori e sparge petali scintillanti facendo magie come una fata.</button>
+      <button class="option" onclick="checkAnswer(this, true)">Perché nota le piccole cose belle che la circondano ogni giorno.</button>
+      <button class="option" onclick="checkAnswer(this, false)">Perché ha molti amici che la fanno ridere.</button>
+    </div>
     <h2>DIMMI ALMENO UNA COSA CHE HAI NOTATO INTORNO A TE CHE TI HA RESO FELICE.</h2>
     <button class="next" id="nextButton" onclick="location.href='domanda2.html'">Prossima domanda</button>
   </div>
 
   <script>
+    // Lo script rimane invariato
     let answered = false;
     function checkAnswer(button, isCorrect) {
       if (answered) return;
